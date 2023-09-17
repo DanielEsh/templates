@@ -1,12 +1,13 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
-    <div :class="$style.test">test</div>
+  <div :class="$style.test">
+    <span> test </span>
+  </div>
 </template>
 
 <style module>
 .test {
-    color: red;
+  color: red;
 }
 </style>

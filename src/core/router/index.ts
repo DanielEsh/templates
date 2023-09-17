@@ -1,11 +1,26 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 
-const routes = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'IndexPage',
-    component: () => import('../../pages/index-page.vue'),
-    props: true,
+    name: 'DefaultLayout',
+    component: () => import('../../layouts/app-layout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('../../pages/index-page.vue'),
+      },
+    ],
+  },
+  {
+    path: '/test',
+    children: [
+      {
+        path: '',
+        component: () => import('../../pages/index-page.vue'),
+      },
+    ],
   },
 ]
 

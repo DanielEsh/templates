@@ -6,4 +6,5 @@
 
 <style>
 @import './assets/css/reset.css';
+@import './assets/css/variables.css';
 </style>

@@ -15,7 +15,7 @@ const appRoutes: AppRouter[] = [
     component: () => import('../../layouts/app-layout.vue'),
     children: [
       {
-        path: '',
+        path: '/',
         name: AppRoutes.HOME,
         component: () => import('../../pages/index-page.vue'),
       },
@@ -25,6 +25,11 @@ const appRoutes: AppRouter[] = [
         component: () => import('../../pages/about-page.vue'),
       },
     ],
+  },
+  {
+    path: RoutePath.notFound,
+    name: AppRoutes.NOT_FOUND,
+    component: () => import('../../pages/not-found-page.vue'),
   },
 ]
 

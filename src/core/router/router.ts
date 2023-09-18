@@ -19,12 +19,12 @@ const appRoutes: AppRouter[] = [
         name: AppRoutes.HOME,
         component: () => import('../../pages/index-page.vue'),
       },
+      {
+        path: RoutePath.about,
+        name: AppRoutes.ABOUT,
+        component: () => import('../../pages/about-page.vue'),
+      },
     ],
-  },
-  {
-    path: RoutePath.about,
-    name: AppRoutes.ABOUT,
-    component: () => import('../../pages/about-page.vue'),
   },
 ]
 

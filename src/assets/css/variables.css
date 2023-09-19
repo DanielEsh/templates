@@ -1,4 +1,19 @@
 :root {
-    --primary: #0d1322;
-    
+    /** colors */
+    /** primary */
+    --primary-500: #191B1F;
+    --primary-400: #272A30;
+    --primary-300: #3E434C;
+    --primary-200: #4E545F;
+    --primary-100: #6A71;
+
+    /** neutral */
+    --neutral-500: #9DA3AF;
+    --neutral-400: #D2D5DA;
+    --neutral-300: #E6E7EA;
+    --neutral-200: #F4F4F6;
+    --neutral-100: #F9FAFA;
+
+    --black: #000;
+    --white: #fff;
 }

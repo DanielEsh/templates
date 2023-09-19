@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { TestInterface } from './example'
+
+export type test = TestInterface
+</script>
 
 <template>
   <h2>Color</h2>

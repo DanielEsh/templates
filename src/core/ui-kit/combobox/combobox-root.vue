@@ -1,20 +1,25 @@
 <script setup lang="ts">
-import * as select from '@zag-js/select'
+import * as combobox from '@zag-js/combobox'
 import { normalizeProps, useMachine } from '@zag-js/vue'
 import { computed } from 'vue'
 
 const selectData = [
   { label: 'Nigeria', value: 'NG' },
   { label: 'Japan', value: 'JP' },
-  //...
 ]
 
+const collection = computed(() =>
+  combobox.collection({
+    items: selectData,
+    itemToValue: (item) => item.value,
+    itemToString: (item) => item.label,
+  }),
+)
+
 const [state, send] = useMachine(
-  select.machine({
+  combobox.machine({
     id: '1',
-    collection: select.collection({
-      items: selectData,
-    }),
+    collection: collection.value,
     name: 'country',
     value: undefined,
     onOpenChange(details) {
@@ -23,10 +28,14 @@ const [state, send] = useMachine(
     onValueChange(details) {
       console.log('on-value-change', details)
     },
+    onInputValueChange(details) {
+      console.log('on-input-change', details)
+    },
+    openOnClick: true,
   }),
 )
 
-const api = computed(() => select.connect(state.value, send, normalizeProps))
+const api = computed(() => combobox.connect(state.value, send, normalizeProps))
 
 const handleClear = () => {
   api.value.clearValue()
@@ -36,26 +45,13 @@ const handleClear = () => {
 
 <template>
   <form>
-    <!-- Hidden select  -->
-    <select v-bind="api.hiddenSelectProps">
-      <option
-        v-for="item in selectData"
-        :key="item.value"
-        :value="item.value"
-      >
-        {{ item.label }}
-      </option>
-    </select>
-
     <!-- Custom Select  -->
     <div v-bind="api.controlProps">
       <label v-bind="api.labelProps">Label</label>
-      <button
-        type="button"
-        v-bind="api.triggerProps"
-      >
-        <input />
-      </button>
+      <div v-bind="api.controlProps">
+        <input v-bind="api.inputProps" />
+        <button v-bind="api.triggerProps">▼</button>
+      </div>
     </div>
 
     <Teleport to="body">

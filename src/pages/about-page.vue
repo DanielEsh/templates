@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RoutePath } from '../core/router'
 import ExampleSelect from '../components/ExampleSelect.vue'
+import ComboboxRoot from '../core/ui-kit/combobox/combobox-root.vue'
 </script>
 
 <template>
@@ -8,6 +9,7 @@ import ExampleSelect from '../components/ExampleSelect.vue'
     <h1>about-page</h1>
     <RouterLink :to="RoutePath.home">back</RouterLink>
     <ExampleSelect />
+    <ComboboxRoot />
   </div>
 </template>
 

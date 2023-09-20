@@ -25,6 +25,7 @@ const [state, send] = useMachine(
     collection: collectionRef.value,
     selectionBehavior: 'clear',
     openOnClick: true,
+
     onOpenChange(details) {
       if (!details.open) return
       options.value = comboboxData
@@ -57,24 +58,28 @@ const api = computed(() => combobox.connect(state.value, send, normalizeProps))
       <input v-bind="api.inputProps" />
     </div>
   </div>
-  <div v-bind="api.positionerProps">
-    <ul
-      v-if="options.length > 0"
-      v-bind="api.contentProps"
-    >
-      <li
-        v-for="item in options"
-        :key="item.code"
-        v-bind="api.getItemProps({ item })"
+
+  <Teleport to="body">
+    <div v-bind="api.positionerProps">
+      <ul
+        v-if="options.length > 0"
+        v-bind="api.contentProps"
       >
-        {{ item.label }}
-      </li>
-    </ul>
-  </div>
+        <li
+          v-for="item in options"
+          :key="item.code"
+          v-bind="api.getItemProps({ item })"
+        >
+          {{ item.label }}
+        </li>
+      </ul>
+    </div>
+  </Teleport>
 </template>
 
 <style module>
 .combobox {
   position: relative;
+  width: 200px;
 }
 </style>

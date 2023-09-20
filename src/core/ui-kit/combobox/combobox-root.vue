@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import * as combobox from '@zag-js/combobox'
 import { normalizeProps, useMachine } from '@zag-js/vue'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
-const selectData = [
-  { label: 'Nigeria', value: 'NG' },
-  { label: 'Japan', value: 'JP' },
+const comboboxData = [
+  { label: 'Zambia', code: 'ZA' },
+  { label: 'Benin', code: 'BN' },
+  //...
 ]
 
-const collection = computed(() =>
+const options = ref(comboboxData)
+
+const collectionRef = computed(() =>
   combobox.collection({
-    items: selectData,
-    itemToValue: (item) => item.value,
+    items: options.value,
+    itemToValue: (item) => item.code,
     itemToString: (item) => item.label,
   }),
 )
@@ -19,55 +22,59 @@ const collection = computed(() =>
 const [state, send] = useMachine(
   combobox.machine({
     id: '1',
-    collection: collection.value,
-    name: 'country',
-    value: undefined,
-    onOpenChange(details) {
-      console.log('open-change', details)
-    },
-    onValueChange(details) {
-      console.log('on-value-change', details)
-    },
-    onInputValueChange(details) {
-      console.log('on-input-change', details)
-    },
+    collection: collectionRef.value,
+    selectionBehavior: 'clear',
     openOnClick: true,
+    onOpenChange(details) {
+      if (!details.open) return
+      options.value = comboboxData
+    },
+    onInputValueChange({ value }) {
+      const filtered = comboboxData.filter((item) =>
+        item.label.toLowerCase().includes(value.toLowerCase()),
+      )
+      options.value = filtered.length > 0 ? filtered : comboboxData
+    },
   }),
+  {
+    context: computed(() => ({
+      collection: collectionRef.value,
+    })),
+  },
 )
 
 const api = computed(() => combobox.connect(state.value, send, normalizeProps))
-
-const handleClear = () => {
-  api.value.clearValue()
-  api.value.close()
-}
 </script>
 
 <template>
-  <form>
-    <!-- Custom Select  -->
-    <div v-bind="api.controlProps">
-      <label v-bind="api.labelProps">Label</label>
-      <div v-bind="api.controlProps">
-        <input v-bind="api.inputProps" />
-        <button v-bind="api.triggerProps">▼</button>
-      </div>
-    </div>
+  <div
+    v-bind="api.rootProps"
+    :class="$style.combobox"
+  >
+    <label v-bind="api.labelProps">Select country</label>
 
-    <Teleport to="body">
-      <div v-bind="api.positionerProps">
-        <ul v-bind="api.contentProps">
-          <li @click="handleClear">clear</li>
-          <li
-            v-for="item in selectData"
-            :key="item.value"
-            v-bind="api.getItemProps({ item })"
-          >
-            <span>{{ item.label }}</span>
-            <span v-bind="api.getItemIndicatorProps({ item })">✓</span>
-          </li>
-        </ul>
-      </div>
-    </Teleport>
-  </form>
+    <div v-bind="api.controlProps">
+      <input v-bind="api.inputProps" />
+    </div>
+  </div>
+  <div v-bind="api.positionerProps">
+    <ul
+      v-if="options.length > 0"
+      v-bind="api.contentProps"
+    >
+      <li
+        v-for="item in options"
+        :key="item.code"
+        v-bind="api.getItemProps({ item })"
+      >
+        {{ item.label }}
+      </li>
+    </ul>
+  </div>
 </template>
+
+<style module>
+.combobox {
+  position: relative;
+}
+</style>

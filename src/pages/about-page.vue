@@ -2,6 +2,7 @@
 import { RoutePath } from '../core/router'
 import ExampleSelect from '../components/ExampleSelect.vue'
 import ComboboxRoot from '../core/ui-kit/combobox/combobox-root.vue'
+import Button from '../core/ui-kit/button/button.vue'
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import ComboboxRoot from '../core/ui-kit/combobox/combobox-root.vue'
     <RouterLink :to="RoutePath.home">back</RouterLink>
     <ExampleSelect />
     <ComboboxRoot />
+    <Button> example button </Button>
   </div>
 </template>
 

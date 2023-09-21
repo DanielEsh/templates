@@ -4,6 +4,7 @@ import ExampleSelect from '../components/ExampleSelect.vue'
 import ComboboxRoot from '../core/ui-kit/combobox/combobox-root.vue'
 import Button from '../core/ui-kit/button/button.vue'
 import Input from '../core/ui-kit/input/input.vue'
+import Slider from '../core/ui-kit/slider/slider.vue'
 </script>
 
 <template>
@@ -16,6 +17,10 @@ import Input from '../core/ui-kit/input/input.vue'
 
     <div :class="$style.inputs">
       <Input />
+    </div>
+
+    <div :class="$style.inputs">
+      <Slider />
     </div>
   </div>
 </template>

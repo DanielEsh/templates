@@ -25,7 +25,7 @@ const [state, send] = useMachine(
     collection: collectionRef.value,
     selectionBehavior: 'clear',
     openOnClick: true,
-
+    // readOnly: true,
     onOpenChange(details) {
       if (!details.open) return
       options.value = comboboxData
@@ -55,7 +55,10 @@ const api = computed(() => combobox.connect(state.value, send, normalizeProps))
     <label v-bind="api.labelProps">Select country</label>
 
     <div v-bind="api.controlProps">
-      <input v-bind="api.inputProps" />
+      <input
+        v-bind="api.inputProps"
+        readonly
+      />
     </div>
   </div>
 

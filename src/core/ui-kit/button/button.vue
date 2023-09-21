@@ -17,6 +17,7 @@
   border: 1px solid var(--primary-500);
   background: var(--primary-500);
   color: var(--white);
+  font-size: 14px;
   cursor: pointer;
 }
 </style>

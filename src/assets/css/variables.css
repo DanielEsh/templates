@@ -7,6 +7,13 @@
     --primary-200: #4E545F;
     --primary-100: #6A71;
 
+    /** secondary */
+    --secondary-500: #620BDA;
+    --secondary-400: #8434F4;
+    --secondary-300: #9B5AF6;
+    --secondary-200: #AA72F8;
+    --secondary-100: #B98BF9; 
+
     /** neutral */
     --neutral-500: #9DA3AF;
     --neutral-400: #D2D5DA;

@@ -2,19 +2,24 @@
 <script setup lang="ts">
 import type { SliderRootEmits, SliderRootProps } from 'radix-vue'
 import { SliderRange, SliderRoot, SliderThumb, SliderTrack } from 'radix-vue'
+import { ref } from 'vue'
 
 const props = defineProps<SliderRootProps>()
 const emits = defineEmits<SliderRootEmits>()
+
+const value = ref()
 </script>
 
 <template>
   <SliderRoot
+    v-model="value"
     :class="$style.root"
     v-bind="{ ...props, ...emits }"
   >
     <SliderTrack :class="$style.track">
       <SliderRange :class="$style.range" />
     </SliderTrack>
+    <SliderThumb :class="$style.thumb" />
     <SliderThumb :class="$style.thumb" />
   </SliderRoot>
 </template>
@@ -30,16 +35,16 @@ const emits = defineEmits<SliderRootEmits>()
 .track {
   position: relative;
   height: 8px;
+  flex-grow: 1;
   width: 100%;
   overflow: hidden;
-  border-radius: 50%;
   background: var(--primary-500);
 }
 
 .range {
   position: absolute;
   height: 100%;
-  background: red;
+  background: var(--secondary-500);
 }
 
 .thumb {
@@ -47,6 +52,7 @@ const emits = defineEmits<SliderRootEmits>()
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background: green;
+  background: var(--secondary-500);
+  cursor: pointer;
 }
 </style>

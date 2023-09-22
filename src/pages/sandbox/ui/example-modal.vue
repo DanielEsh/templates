@@ -7,7 +7,9 @@ const isModalOpen = ref(false)
 </script>
 
 <template>
-  {{ isModalOpen }}
+  <pre>
+    <code>isModalOpen: {{ isModalOpen }}</code>
+  </pre>
   <Modal
     v-model="isModalOpen"
     title="example modal title"

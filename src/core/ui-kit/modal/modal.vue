@@ -6,22 +6,35 @@ import {
   DialogOverlay,
   DialogPortal,
   DialogRoot,
-  DialogTrigger,
 } from 'radix-vue'
-import Button from '../button/button.vue'
+import { useVModel } from '@vueuse/core'
 
 export interface ModalProps {
   title: string
+  modelValue: boolean
+  opened?: boolean
 }
 
-defineProps<ModalProps>()
+export interface ModalEmits {
+  (event: 'update:modelValue', opened: (typeof props)['modelValue']): void
+}
+
+const props = defineProps<ModalProps>()
+const emit = defineEmits<ModalEmits>()
+
+const opened = useVModel(props, 'modelValue', emit)
+
+const handleClose = () => {
+  emit('update:modelValue', false)
+}
 </script>
 
 <template>
-  <DialogRoot>
-    <DialogTrigger as-child>
-      <Button>open modal</Button>
-    </DialogTrigger>
+  <DialogRoot
+    v-model="opened"
+    :open="opened"
+    @update:open="handleClose"
+  >
     <DialogPortal>
       <DialogOverlay :class="$style.overlay" />
       <DialogContent :class="$style.content">

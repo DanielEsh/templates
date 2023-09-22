@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import Input from '../../../core/ui-kit/input/input.vue'
 
 const value = ref('')
+const filledValue = ref('input with filled value')
 </script>
 
 <template>
@@ -19,6 +20,14 @@ const value = ref('')
   <div :class="$style.input">
     <Input
       v-model="value"
+      label="custom label"
+      placeholder="input with placeholder..."
+    />
+  </div>
+
+  <div :class="$style.input">
+    <Input
+      v-model="filledValue"
       label="custom label"
       placeholder="input with placeholder..."
     />

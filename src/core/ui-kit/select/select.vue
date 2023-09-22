@@ -38,17 +38,6 @@ const handleClear = () => {
 
 <template>
   <form>
-    <!-- Hidden select  -->
-    <select v-bind="api.hiddenSelectProps">
-      <option
-        v-for="item in selectData"
-        :key="item.value"
-        :value="item.value"
-      >
-        {{ item.label }}
-      </option>
-    </select>
-
     <!-- Custom Select  -->
     <div v-bind="api.controlProps">
       <Input
@@ -60,8 +49,14 @@ const handleClear = () => {
     </div>
 
     <Teleport to="body">
-      <div v-bind="api.positionerProps">
-        <ul v-bind="api.contentProps">
+      <div
+        v-bind="api.positionerProps"
+        :class="[$style.content, { [$style.visible]: !api.isOpen }]"
+      >
+        <ul
+          v-bind="api.contentProps"
+          :class="$style.list"
+        >
           <li @click="handleClear">clear</li>
           <li
             v-for="item in selectData"
@@ -76,3 +71,21 @@ const handleClear = () => {
     </Teleport>
   </form>
 </template>
+
+<style module>
+.content {
+  background: var(--white);
+  width: var(--reference-width);
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  opacity: 1;
+}
+
+.visible {
+  opacity: 0;
+}
+
+.list {
+  margin: 0 10px;
+}
+</style>

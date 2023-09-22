@@ -22,7 +22,8 @@ const value = useVModel(props, 'modelValue', emit)
 const isFocused = ref(false)
 
 const isActive = computed(
-  () => value.value || props.placeholder || isFocused.value,
+  () =>
+    (value.value || props.placeholder || isFocused.value) && !props.readonly,
 )
 
 const toggleFocus = () => {

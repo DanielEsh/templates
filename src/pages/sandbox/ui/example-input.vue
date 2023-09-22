@@ -15,10 +15,19 @@ const value = ref('')
       label="custom label"
     />
   </div>
+
+  <div :class="$style.input">
+    <Input
+      v-model="value"
+      label="custom label"
+      placeholder="input with placeholder..."
+    />
+  </div>
 </template>
 
 <style module>
 .input {
   width: 100%;
+  margin-top: 20px;
 }
 </style>

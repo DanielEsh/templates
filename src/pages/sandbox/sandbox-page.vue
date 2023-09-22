@@ -3,6 +3,7 @@ import ExampleButtons from './ui/example-buttons.vue'
 import ExampleModal from './ui/example-modal.vue'
 import ExampleSlider from './ui/example-slider.vue'
 import ExampleInput from './ui/example-input.vue'
+import ExampleSelect from './ui/example-select.vue'
 </script>
 
 <template>
@@ -27,6 +28,11 @@ import ExampleInput from './ui/example-input.vue'
     <div :class="$style.block">
       <h2 :class="$style.blockTitle">Input</h2>
       <ExampleInput />
+    </div>
+
+    <div :class="$style.block">
+      <h2 :class="$style.blockTitle">Select</h2>
+      <ExampleSelect />
     </div>
   </div>
 </template>

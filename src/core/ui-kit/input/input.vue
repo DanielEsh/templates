@@ -1,11 +1,13 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useVModel } from '@vueuse/core'
 
 export interface InputProps {
   modelValue: string
   label: string
+  readonly?: boolean
+  placeholder?: string
 }
 
 export interface InputEmits {
@@ -19,6 +21,10 @@ const value = useVModel(props, 'modelValue', emit)
 
 const isFocused = ref(false)
 
+const isActive = computed(
+  () => value.value || props.placeholder || isFocused.value,
+)
+
 const toggleFocus = () => {
   isFocused.value = !isFocused.value
 }
@@ -30,11 +36,13 @@ const toggleFocus = () => {
       v-model="value"
       type="text"
       :class="$style.inputControl"
+      :readonly="readonly"
+      :placeholder="placeholder"
       @blur="toggleFocus"
       @focus="toggleFocus"
     />
 
-    <span :class="[$style.label, { [$style.labelActive]: isFocused }]">
+    <span :class="[$style.label, { [$style.labelActive]: isActive }]">
       {{ label }}
     </span>
   </label>

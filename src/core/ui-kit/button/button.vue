@@ -13,7 +13,7 @@
   justify-content: center;
   align-items: center;
   padding: 8px 16px;
-  border-radius: 2px;
+  border-radius: 4px;
   border: 1px solid var(--primary-500);
   background: var(--primary-500);
   color: var(--white);

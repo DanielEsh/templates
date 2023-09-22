@@ -5,5 +5,6 @@ export enum AppLayouts {
 export enum AppRoutes {
   HOME = 'home',
   ABOUT = 'about',
+  SANDBOX = 'sandbox',
   NOT_FOUND = 'notFound',
 }

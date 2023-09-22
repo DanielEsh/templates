@@ -27,6 +27,11 @@ const appRoutes: AppRouter[] = [
     ],
   },
   {
+    path: RoutePath.sandbox,
+    name: AppRoutes.SANDBOX,
+    component: () => import('../../pages/sandbox/sandbox-page.vue'),
+  },
+  {
     path: RoutePath.notFound,
     name: AppRoutes.NOT_FOUND,
     component: () => import('../../pages/not-found-page.vue'),

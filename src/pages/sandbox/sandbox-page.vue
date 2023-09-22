@@ -2,6 +2,7 @@
 import ExampleButtons from './ui/example-buttons.vue'
 import ExampleModal from './ui/example-modal.vue'
 import ExampleSlider from './ui/example-slider.vue'
+import ExampleInput from './ui/example-input.vue'
 </script>
 
 <template>
@@ -9,7 +10,7 @@ import ExampleSlider from './ui/example-slider.vue'
     <h1>SandBox Page</h1>
 
     <div :class="$style.block">
-      <h2 :class="$style.blockTitle">Buttons</h2>
+      <h2 :class="$style.blockTitle">Button</h2>
       <ExampleButtons />
     </div>
 
@@ -21,6 +22,11 @@ import ExampleSlider from './ui/example-slider.vue'
     <div :class="$style.block">
       <h2 :class="$style.blockTitle">Slider</h2>
       <ExampleSlider />
+    </div>
+
+    <div :class="$style.block">
+      <h2 :class="$style.blockTitle">Input</h2>
+      <ExampleInput />
     </div>
   </div>
 </template>

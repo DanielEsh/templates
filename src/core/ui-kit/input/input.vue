@@ -1,6 +1,21 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useVModel } from '@vueuse/core'
+
+export interface InputProps {
+  modelValue: string
+}
+
+export interface InputEmits {
+  (event: 'update:modelValue', value: (typeof props)['modelValue']): void
+}
+
+const props = defineProps<InputProps>()
+const emit = defineEmits<InputEmits>()
+
+const value = useVModel(props, 'modelValue', emit)
+
 const isFocused = ref(false)
 
 const toggleFocus = () => {
@@ -11,6 +26,7 @@ const toggleFocus = () => {
 <template>
   <label :class="$style.input">
     <input
+      v-model="value"
       type="text"
       :class="$style.inputControl"
       @blur="toggleFocus"
@@ -26,16 +42,15 @@ const toggleFocus = () => {
 <style module>
 .input {
   position: relative;
+  display: flex;
 }
 
 .inputControl {
-  /* position: relative; */
-  z-index: 1;
   width: 100%;
   height: 100%;
   padding: 16px;
   border-radius: 4px;
-  border: 1px solid #e7e7f0;
+  border: 1px solid #e6e6e6;
   background-color: transparent;
   text-align: left;
   font: inherit;
@@ -57,6 +72,7 @@ const toggleFocus = () => {
   transform: translateY(-50%);
   transform-origin: left center;
   pointer-events: none;
+  transition: transform 0.3s;
 }
 
 .labelActive {

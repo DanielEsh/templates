@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import ExampleModal from './ui/example-modal.vue'
 import ExampleButtons from './ui/example-buttons.vue'
+import ExampleModal from './ui/example-modal.vue'
+import ExampleSlider from './ui/example-slider.vue'
 </script>
 
 <template>
@@ -15,6 +16,11 @@ import ExampleButtons from './ui/example-buttons.vue'
     <div :class="$style.block">
       <h2 :class="$style.blockTitle">Modal</h2>
       <ExampleModal />
+    </div>
+
+    <div :class="$style.block">
+      <h2 :class="$style.blockTitle">Slider</h2>
+      <ExampleSlider />
     </div>
   </div>
 </template>

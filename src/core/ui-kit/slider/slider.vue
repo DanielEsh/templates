@@ -2,12 +2,16 @@
 <script setup lang="ts">
 import type { SliderRootEmits, SliderRootProps } from 'radix-vue'
 import { SliderRange, SliderRoot, SliderThumb, SliderTrack } from 'radix-vue'
-import { ref } from 'vue'
+import { useVModel } from '@vueuse/core'
+
+export interface ModalEmits {
+  (event: 'update:modelValue', values: (typeof props)['modelValue']): void
+}
 
 const props = defineProps<SliderRootProps>()
 const emits = defineEmits<SliderRootEmits>()
 
-const value = ref()
+const value = useVModel(props, 'modelValue', emits)
 </script>
 
 <template>
@@ -34,25 +38,29 @@ const value = ref()
 
 .track {
   position: relative;
-  height: 8px;
+  height: 4px;
   flex-grow: 1;
   width: 100%;
   overflow: hidden;
-  background: var(--primary-500);
+  border-radius: 4px;
+  background: #e6e6e6;
+  cursor: pointer;
 }
 
 .range {
   position: absolute;
   height: 100%;
-  background: var(--secondary-500);
+  background: var(--primary-500);
 }
 
 .thumb {
+  --size: 20px;
+
   display: block;
-  height: 20px;
-  width: 20px;
+  height: var(--size);
+  width: var(--size);
   border-radius: 50%;
-  background: var(--secondary-500);
+  background: var(--primary-500);
   cursor: pointer;
 }
 </style>

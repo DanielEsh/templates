@@ -23,7 +23,7 @@ const isFocused = ref(false)
 
 const isActive = computed(
   () =>
-    (value.value || props.placeholder || isFocused.value) && !props.readonly,
+    value.value || props.placeholder || (isFocused.value && !props.readonly),
 )
 
 const toggleFocus = () => {

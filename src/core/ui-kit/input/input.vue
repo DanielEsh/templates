@@ -5,6 +5,7 @@ import { useVModel } from '@vueuse/core'
 
 export interface InputProps {
   modelValue: string
+  label: string
 }
 
 export interface InputEmits {
@@ -34,7 +35,7 @@ const toggleFocus = () => {
     />
 
     <span :class="[$style.label, { [$style.labelActive]: isFocused }]">
-      label
+      {{ label }}
     </span>
   </label>
 </template>

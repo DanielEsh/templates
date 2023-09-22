@@ -10,7 +10,10 @@ const value = ref('')
     <pre>
       <code>value: {{ value }}</code>
     </pre>
-    <Input v-model="value" />
+    <Input
+      v-model="value"
+      label="custom label"
+    />
   </div>
 </template>
 

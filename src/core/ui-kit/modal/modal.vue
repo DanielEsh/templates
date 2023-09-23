@@ -8,6 +8,8 @@ import {
   DialogRoot,
 } from 'radix-vue'
 import { useVModel } from '@vueuse/core'
+import { Icon, IconsNames } from '../icon'
+import Button from '../button/button.vue'
 
 export interface ModalProps {
   title: string
@@ -44,7 +46,9 @@ const handleClose = () => {
             aria-label="Close"
             as-child
           >
-            <span>close</span>
+            <Button>
+              <Icon :name="IconsNames.close" />
+            </Button>
           </DialogClose>
         </div>
 
@@ -66,7 +70,7 @@ const handleClose = () => {
 }
 
 .content {
-  position: absolute;
+  position: fixed;
   top: 40px;
   left: 50%;
   z-index: 100;

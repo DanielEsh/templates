@@ -8,7 +8,6 @@ const DEFAULT_PORT = 3000
 export default defineConfig(async ({ mode }) => {
   const { PORT } = loadEnv(mode, process.cwd(), '')
 
-  console.log('PORT')
   return {
     plugins: [vue(), svgLoader()],
     server: {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Button from '../../../core/ui-kit/button/button.vue'
-import IconClose from '../../../assets/icons/close.svg'
+import { Icon, IconsNames } from '../../../core/ui-kit/icon'
 
 const handleClick = (event: Event) => {
   console.log('button click', event)
@@ -11,7 +11,7 @@ const handleClick = (event: Event) => {
   <div>
     <Button @click="handleClick"> Default button </Button>
     <Button>
-      <IconClose />
+      <Icon :name="IconsNames.close" />
     </Button>
   </div>
 </template>

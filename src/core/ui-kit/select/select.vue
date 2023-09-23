@@ -6,6 +6,7 @@ import { normalizeProps, useMachine } from '@zag-js/vue'
 import Input from '../input/input.vue'
 
 const selectData = [
+  { label: 'Любое', value: '' },
   { label: 'Nigeria', value: 'NG' },
   { label: 'Japan', value: 'JP' },
   //...
@@ -29,11 +30,6 @@ const [state, send] = useMachine(
 )
 
 const api = computed(() => select.connect(state.value, send, normalizeProps))
-
-const handleClear = () => {
-  api.value.clearValue()
-  api.value.close()
-}
 </script>
 
 <template>
@@ -57,14 +53,18 @@ const handleClear = () => {
           v-bind="api.contentProps"
           :class="$style.list"
         >
-          <li @click="handleClear">clear</li>
           <li
             v-for="item in selectData"
             :key="item.value"
             v-bind="api.getItemProps({ item })"
+            :class="[
+              $style.option,
+              {
+                [$style._selected]: item.value === api.selectedItems[0]?.value,
+              },
+            ]"
           >
             <span>{{ item.label }}</span>
-            <span v-bind="api.getItemIndicatorProps({ item })">✓</span>
           </li>
         </ul>
       </div>
@@ -86,6 +86,19 @@ const handleClear = () => {
 }
 
 .list {
-  margin: 0 10px;
+  margin: 18px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+._selected {
+  background: var(--primary-500);
+  color: var(--white);
 }
 </style>

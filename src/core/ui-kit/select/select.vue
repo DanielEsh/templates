@@ -100,13 +100,14 @@ const api = computed(() => select.connect(state.value, send, normalizeProps))
 }
 
 .list {
-  margin: 18px;
+  margin: 10px;
 }
 
 .option {
   display: flex;
   align-items: center;
   height: 26px;
+  padding: 8px;
   border-radius: 2px;
   cursor: pointer;
 }

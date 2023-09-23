@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import ExampleButtons from './ui/example-buttons.vue'
-import ExampleModal from './ui/example-modal.vue'
-import ExampleSlider from './ui/example-slider.vue'
-import ExampleInput from './ui/example-input.vue'
-import ExampleSelect from './ui/example-select.vue'
+import ExampleButtons from './components/example-buttons.vue'
+import ExampleModal from './components/example-modal.vue'
+import ExampleSlider from './components/example-slider.vue'
+import ExampleInput from './components/example-input.vue'
+import ExampleSelect from './components/example-select.vue'
 </script>
 
 <template>

@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import svgLoader from 'vite-svg-loader'
 
 const DEFAULT_PORT = 3000
 
@@ -9,7 +10,7 @@ export default defineConfig(async ({ mode }) => {
 
   console.log('PORT')
   return {
-    plugins: [vue()],
+    plugins: [vue(), svgLoader()],
     server: {
       port: +PORT || DEFAULT_PORT,
     },

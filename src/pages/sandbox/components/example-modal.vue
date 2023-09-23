@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import Modal from '../../../core/ui-kit/modal/modal.vue'
-import Button from '../../../core/ui-kit/button/button.vue'
+import { Modal, Button } from '../../../core/ui-kit'
 import { ref } from 'vue'
 
 const isModalOpen = ref(false)

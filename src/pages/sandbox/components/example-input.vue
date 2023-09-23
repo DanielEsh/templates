@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Input from '../../../core/ui-kit/input/input.vue'
+import { Input } from '../../../core/ui-kit'
 
 const value = ref('')
 const filledValue = ref('input with filled value')

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import Button from '../../../core/ui-kit/button/button.vue'
-import { Icon, IconsNames } from '../../../core/ui-kit/icon'
+import { Button, Icon, IconsNames } from '../../../core/ui-kit'
 
 const handleClick = (event: Event) => {
   console.log('button click', event)

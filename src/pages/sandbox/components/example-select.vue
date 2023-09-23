@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Select from '../../../core/ui-kit/select/select.vue'
+import { Select } from '../../../core/ui-kit'
 
 const options = [
   { label: 'Не выбрано', value: '' },

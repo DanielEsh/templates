@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Slider from '../../../core/ui-kit/slider/slider.vue'
+import { Slider } from '../../../core/ui-kit'
 import { ref } from 'vue'
 
 const slider1Values = ref([20, 80])

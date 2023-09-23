@@ -4,27 +4,41 @@ import { computed } from 'vue'
 import * as select from '@zag-js/select'
 import { normalizeProps, useMachine } from '@zag-js/vue'
 import Input from '../input/input.vue'
+import { useVModel } from '@vueuse/core'
 
-const selectData = [
-  { label: 'Любое', value: '' },
-  { label: 'Nigeria', value: 'NG' },
-  { label: 'Japan', value: 'JP' },
-  //...
-]
+export interface SelectOptions {
+  label: string
+  value: string | number
+}
+
+export interface SelectProps {
+  modelValue: string
+  options: SelectOptions[]
+}
+
+export interface SelectEmits {
+  (event: 'update:modelValue', selected: (typeof props)['modelValue']): void
+}
+
+const props = defineProps<SelectProps>()
+const emit = defineEmits<SelectEmits>()
+
+const selectedValue = useVModel(props, 'modelValue', emit)
 
 const [state, send] = useMachine(
   select.machine({
     id: '1',
     collection: select.collection({
-      items: selectData,
+      items: props.options,
     }),
     name: 'country',
-    value: undefined,
+    value: [selectedValue.value],
     onOpenChange(details) {
       console.log('open-change', details)
     },
     onValueChange(details) {
       console.log('on-value-change', details)
+      emit('update:modelValue', details.value[0])
     },
   }),
 )
@@ -54,7 +68,7 @@ const api = computed(() => select.connect(state.value, send, normalizeProps))
           :class="$style.list"
         >
           <li
-            v-for="item in selectData"
+            v-for="item in options"
             :key="item.value"
             v-bind="api.getItemProps({ item })"
             :class="[

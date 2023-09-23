@@ -18,6 +18,7 @@ export interface SelectProps {
 
 export interface SelectEmits {
   (event: 'update:modelValue', selected: (typeof props)['modelValue']): void
+  (event: 'open-change', value: boolean): void
 }
 
 const props = defineProps<SelectProps>()
@@ -34,10 +35,9 @@ const [state, send] = useMachine(
     name: 'country',
     value: [selectedValue.value],
     onOpenChange(details) {
-      console.log('open-change', details)
+      emit('open-change', details.open)
     },
     onValueChange(details) {
-      console.log('on-value-change', details)
       emit('update:modelValue', details.value[0])
     },
   }),

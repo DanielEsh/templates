@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import Select from '../../../core/ui-kit/select/select.vue'
 
 const options = [
-  { label: 'Любое', value: '' },
+  { label: 'Не выбрано', value: '' },
   { label: 'Россия', value: 'RU' },
   { label: 'Англия', value: 'UK' },
   { label: 'Америка', value: 'US' },
@@ -19,6 +19,7 @@ const selectedOptionValue = ref('')
     </pre>
     <Select
       v-model="selectedOptionValue"
+      label="Выбор страны"
       :options="options"
     />
   </div>

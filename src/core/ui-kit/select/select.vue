@@ -13,6 +13,7 @@ export interface SelectOptions {
 
 export interface SelectProps {
   modelValue: string
+  label: string
   options: SelectOptions[]
 }
 
@@ -53,7 +54,7 @@ const api = computed(() => select.connect(state.value, send, normalizeProps))
       <Input
         v-bind="api.triggerProps"
         v-model="api.valueAsString"
-        label="select"
+        :label="label"
         readonly
       />
     </div>

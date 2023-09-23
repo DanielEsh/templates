@@ -7,4 +7,6 @@
 <style>
 @import './assets/css/reset.css';
 @import './assets/css/variables.css';
+@import './assets//css/fonts.css';
+@import './style.css';
 </style>

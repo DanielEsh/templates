@@ -9,9 +9,7 @@ export default defineConfig(async ({ mode }) => {
   const { PORT } = loadEnv(mode, process.cwd(), '')
 
   return {
-    plugins: [
-      react(),
-    ],
+    plugins: [react()],
     server: {
       port: +PORT || DEFAULT_PORT,
     },

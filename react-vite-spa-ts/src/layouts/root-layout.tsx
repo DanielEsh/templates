@@ -1,13 +1,12 @@
-import {Outlet} from "react-router-dom";
+import { Outlet } from 'react-router-dom'
 
 export const RootLayout = () => {
-    return (
-        <div>
-            RootLayout
-
-            <div className="">
-                <Outlet />
-            </div>
-        </div>
-    )
+  return (
+    <div>
+      RootLayout
+      <div className="">
+        <Outlet />
+      </div>
+    </div>
+  )
 }

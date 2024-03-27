@@ -1,7 +1,3 @@
 export const CategoriesCreate = () => {
-   return (
-       <div>
-           Categories Create Page
-       </div>
-   )
+  return <div>Categories Create Page</div>
 }

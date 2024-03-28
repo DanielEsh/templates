@@ -1,3 +1,3 @@
-import { HomePage } from './home-page.tsx'
+import { lazy } from 'react'
 
-export default HomePage
+export const HomePage = lazy(() => import('./home-page.tsx'))

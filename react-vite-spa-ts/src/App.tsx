@@ -4,7 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { PrivateRoute } from './components/PrivateRouter.tsx'
 import { AuthLayout } from './layouts/auth-layout.tsx'
 import { RootLayout } from './layouts/root-layout.tsx'
-// import {CategoriesPage} from "./routes/categories.tsx";
+import { ListPage, ListCreatePage, ListDetailsPage } from './pages/list'
+// import {CategoriesPage} from "./routes/list.tsx";
 import { CategoriesCreate } from './routes/categories-create.tsx'
 import { CategoriesDetails } from './routes/categories-details.tsx'
 import { Login } from './routes/login.tsx'
@@ -41,6 +42,24 @@ const router = createBrowserRouter([
           </Suspense>
         ),
         index: true,
+      },
+      {
+        path: '/list',
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <ListPage />
+          </Suspense>
+        ),
+        children: [
+          {
+            path: 'create',
+            element: <ListCreatePage />,
+          },
+          {
+            path: ':id',
+            element: <ListDetailsPage />,
+          },
+        ],
       },
       {
         path: '/categories',

@@ -6,7 +6,7 @@ export default function HomePage() {
       <h1>Home Page</h1>
       {String(import.meta.env.VITE_ENV_VARIABLE)}
       <div>
-        <Link to="/list">To categories</Link>
+        <Link to="/list">To list page</Link>
       </div>
     </div>
   )
